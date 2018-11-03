@@ -35,6 +35,5 @@ class TestPerceptron(unittest.TestCase):
                 preds, y
             ))
 
-
 if __name__ == '__main__':
     unittest.main()
