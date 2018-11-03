@@ -18,26 +18,22 @@ class TestPerceptron(unittest.TestCase):
         self.assertEqual(self.pnn.weights.size, num_of_inputs_plus_bias * self.num_neurons)
 
     def test_train(self):
-        # XOR problem
         self.num_inputs_nodes = 2
         self.num_neurons = 1
         self.pnn = Perceptron(self.num_inputs_nodes, self.num_neurons)
 
         x = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-        y = np.array([[0], [1], [1], [1]])
-        self.assertTrue(y.shape == self.pnn.predict(x).shape)
-        weights_init = self.pnn.weights
-        self.pnn.train(x, y, 0.1)
-        weights_final = self.pnn.weights
+        # XORtargets = np.array([[0], [1], [1], [0]])
+        targets = {'And data': np.array([[0], [0], [0], [1]]),
+                   'Or data': np.array([[0], [1], [1], [1]])}
+        self.assertTrue(targets['And data'].shape == self.pnn.predict(x).shape)
 
-        # self.assertFalse(np.array_equal(weights_init, weights_final))
-
-        x_test = x
-        preds = self.pnn.predict(x_test)
-        print(preds)
-        self.assertTrue(np.array_equal(preds, y))
-
-        # self.assertTrue()
+        for key, y in targets.items():
+            self.pnn.train(x, y, 0.2, 200)
+            preds = self.pnn.predict(x)
+            self.assertTrue(np.array_equal(preds, y), msg="given {} not equals to the right answer: {}".format(
+                preds, y
+            ))
 
 
 if __name__ == '__main__':

@@ -29,32 +29,28 @@ class Perceptron:
             raise TypeError
         return len(y.shape) == 2 and y.shape[1] == self.num_neurons
 
-    def train(self, x_train, y_train, eta):
+    def train(self, x_train, y_train, eta, num_epoch):
         if not (self.check_x(x_train) or self.check_y(y_train)):
             raise ValueError
 
-        # activations = np.dot(x_train, self.weights)
-        preds = self.predict(x_train)
-        # print(preds.shape, y_train.shape)
+        # bias = np.ones((x_train.shape[0], 1))
+        # x_train = np.concatenate((x_train, bias), axis=1)
 
-        bias = np.ones((x_train.shape[0], 1))
-        x_train_tmp = np.concatenate((x_train, bias), axis=1)
-
+        i = 0
         # stochastic gradient descent applied to perceptron criterion
-        self.weights -= eta * np.dot(x_train_tmp.T, preds - y_train)
-        print("{}", str(self.weights))
+        for epoch in range(num_epoch):
+            for x_train_batch, y_train_batch in zip(x_train, y_train):
+                x_train_batch = x_train_batch[np.newaxis, :]
+                y_train_batch = y_train_batch[np.newaxis, :]
 
-        # for over_samples in range(x_train.shape[0]):
-        #     for over_neurons in range(self.num_neurons):
-        #         for over_inupts in range(self.num_inputs_nodes):
-        #             self.weights[over_inupts, over_neurons] -= \
-        #                 eta * (y_train[over_neurons] - preds[over_neurons]) * \
-        #                 x_train[over_samples, over_inupts]
+                preds = self.predict(x_train_batch)
 
-            # print("{}\{} iteration: {}".format(over_samples, x_train.shape[0],
-            #                                              str(self.weights)))
-            # self.logger.info("{}\{} iteration: {}".format(over_samples, x_train.shape[0],
-            #                                              str(self.weights)))
+                bias = np.ones((x_train_batch.shape[0], 1))
+                x_train_batch = np.concatenate((x_train_batch, bias), axis=1)
+
+                self.weights -= eta * np.dot(x_train_batch.T, preds - y_train_batch)
+
+            print("Epoch {}. Weights: {}".format(epoch, str(self.weights)))
 
     def predict(self, x_test):
         bias = np.ones((x_test.shape[0], 1))
