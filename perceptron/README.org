@@ -1,0 +1,10 @@
+* what to do
+- make available to get [[http://ru.learnmachinelearning.wikia.com/wiki/%25D0%259C%25D0%25B0%25D1%2582%25D1%2580%25D0%25B8%25D1%2586%25D0%25B0_%25D0%25BE%25D1%2588%25D0%25B8%25D0%25B1%25D0%25BE%25D0%25BA_(Confusion_matrix)][confusion matrix]] from the algorithm
+- TODO make early stopping algorithm
+
+* General info
+implementing perceptron in numpy from scratch accompaniyng 
+with textbook `Machine Learning: An Algorithm Perspective"
+ by Stephen Marsland
+
+[[https://github.com/alexsosn/MarslandMLAlgo][code from book]]
