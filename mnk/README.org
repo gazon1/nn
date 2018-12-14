@@ -7,10 +7,7 @@
 
 Демострацию работы алгоритма можно посмотреть в ноубуке 'Kachmarz algorithm demonstration.ipynb'
 
-* Что можно сделать еще
-- DONE добавить код, графики, показывающие работу алг. Качмара, когда истинные веса w изменяются во времени - дрейфуют
-- TODO добавить логирование в файл вместо print в ноутбуке и в файле kachmarz.py 
 * References
-- Aved'yan "Learning Systems", Springer, 16-39 p.
+- Aved'yan "Learning Systems", Springer, 50-61 p.
 
 
